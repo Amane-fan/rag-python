@@ -1,0 +1,22 @@
+# Streamlit app
+streamlit>=1.39,<2.0
+python-dotenv>=1.0,<2.0
+
+# LangChain RAG core
+langchain>=0.3,<0.4
+langchain-community>=0.3,<0.4
+langchain-openai>=0.3,<0.4
+langchain-text-splitters>=0.3,<0.4
+
+# Vector store
+faiss-cpu>=1.8,<2.0
+
+# Document loaders / parsing
+pypdf>=5.0,<6.0
+python-docx>=1.1,<2.0
+
+# Tokenization
+tiktoken>=0.8,<1.0
+
+# Optional: use DashScope SDK directly if needed
+dashscope>=1.20,<2.0
