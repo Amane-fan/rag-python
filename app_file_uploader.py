@@ -16,3 +16,6 @@ if uploaded_file is not None:
     st.subheader(f"文件名{file_name}")
     st.write(f"文件大小: {file_size:.2f} KB")
     st.write(f"文件类型: {file_type}")
+
+    text = uploaded_file.getvalue().decode("utf-8")
+    st.write(f"文件内容预览:{text}")
