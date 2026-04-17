@@ -18,6 +18,7 @@ max_split_char_number = 1000
 
 # model
 embedding_model = "text-embedding-v4"
+chat_model = "qwen-plus"
 DASHSCOPE_API_KEY = os.getenv("DASHSCOPE_API_KEY")
 DASHSCOPE_BASE_URL = os.getenv("DASHSCOPE_BASE_URL")
 

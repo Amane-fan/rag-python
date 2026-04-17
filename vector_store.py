@@ -14,4 +14,4 @@ class VectorStoreService(object):
 
     def get_retriever(self):
         """获取向量数据库的检索器"""
-        return self.vector_store.as_retriever(search_kwargs={"k": config.similarity_top_k})    
+        return self.vector_store.as_retriever(search_kwargs={"k": config.similarity_top_k})
