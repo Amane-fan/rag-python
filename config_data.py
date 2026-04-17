@@ -9,6 +9,8 @@ md5_path = "./md5.text"
 collection_name = "rag"
 persist_directory = "./chroma_db"
 chunks_limit_size = 10 #限制embedding请求批大小
+history_store_dir = "./chat_history"
+default_session_id = "default"
 
 # spliter
 chunk_size = 1000
