@@ -49,7 +49,7 @@ class KnowledgeBaseService(object):
         )
     
     def upload_by_str(self, data: str, filename: str):
-        """将传入的字符串向量化后存入数据库中"""
+        """文档上传"""
         md5_str = get_string_md5(data)
         if check_md5(md5_str):
             return f"{filename} 已存在，跳过处理..."
