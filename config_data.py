@@ -20,3 +20,6 @@ max_split_char_number = 1000
 embedding_model = "text-embedding-v4"
 DASHSCOPE_API_KEY = os.getenv("DASHSCOPE_API_KEY")
 DASHSCOPE_BASE_URL = os.getenv("DASHSCOPE_BASE_URL")
+
+# 
+similarity_top_k = 5         #相似度检索时返回的top k个结果
