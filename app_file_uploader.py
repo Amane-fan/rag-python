@@ -6,7 +6,7 @@ st.title("Amaneの文件上传")
 
 uploaded_file = st.file_uploader(
     "选择一个文件上传",
-    type=["txt", "md", "pdf"],
+    type=["txt", "md"],
 )
 
 # 确保service单例

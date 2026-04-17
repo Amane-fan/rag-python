@@ -3,8 +3,8 @@ import config_data as config
 import hashlib
 from langchain_chroma import Chroma
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_ollama import OllamaEmbeddings
 from datetime import datetime
+from langchain_openai import OpenAIEmbeddings
 
 def check_md5(md5_str: str):
     """检查传入的md5字符串是否被处理过"""
@@ -39,7 +39,13 @@ class KnowledgeBaseService(object):
         self.chroma = Chroma(
             collection_name=config.collection_name, 
             persist_directory=config.persist_directory,
-            embedding_function=OllamaEmbeddings(model=config.embedding_model_name)
+            embedding_function=OpenAIEmbeddings(
+                model=config.embedding_model,
+                base_url=config.DASHSCOPE_BASE_URL,
+                api_key=config.DASHSCOPE_API_KEY,
+                check_embedding_ctx_length=False,
+                chunk_size=config.chunks_limit_size
+            )
         )
         self.spliter = RecursiveCharacterTextSplitter(
             chunk_size=config.chunk_size, 
@@ -54,8 +60,7 @@ class KnowledgeBaseService(object):
         if check_md5(md5_str):
             return f"{filename} 已存在，跳过处理..."
         
-        # 存入md5
-        save_md5(md5_str)
+        
 
         # 若在一定阈值内，则不需要分块
         chunks = []
@@ -70,9 +75,8 @@ class KnowledgeBaseService(object):
             chunks = [data]
         # 加入向量库
         self.chroma.add_texts(chunks, metadatas=[meta_data for _ in chunks])
-        return f"{filename} 处理完成，已存入数据库中..."
-    
-if __name__ == "__main__":
-    service = KnowledgeBaseService()
-    result = service.upload_by_str("Amaneの测试", "test.txt")
-    print(result)
+
+        # 存入md5
+        save_md5(md5_str)
+
+        return f"{filename} 处理完成，已存入数据库中..."    
